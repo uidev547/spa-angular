@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <title><%= title %></title>
+    <link href="/dist/css/vendor.css" rel="stylesheet" />
+    <link href="/dist/css/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  </head>
+  <body>
+  <div class="navigation-layer"></div>
+  <app-header></app-header>
+  <div ui-view class="view-content"></div>
+  <app-footer></app-footer>
+  </body>
+  <script src="/dist/js/vendor.min.js"></script>
+  <script src="/dist/js/app.min.js"></script>
+  <script type="text/javascript">
+    var uiBaseUrl = '/dist';
+  </script>
+  <style type="text/css">
+    .view-content {
+      min-height: calc( 100vh - 119px ); 
+    }
+  </style>
+
+</html>

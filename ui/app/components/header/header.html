@@ -1,0 +1,29 @@
+<header>
+    <div class="header-container">
+        <div class="base-layout section-flush">
+            <a href="/" class="logo">
+                <span class="icon-home"></span>
+            </a>
+            <nav class="navigation" id="navigation">
+                <a href="#" ng-click="openMenu( $event )" class="menu-nav"><span class="icon-newspaper"></span></a>
+                <div id="nav-links-container" class="nav-links-container">
+                    <ul class="nav-links" id="nav-links">
+                        <li>
+                            <a class="nav-link" href="#">link1</a>
+                        </li>
+                        <li ng-if="!userModel.user">
+                            <a  class="nav-link" href="/login">Login</a>
+                        </li>
+                        <li ng-if="userModel.user" uib-dropdown class="navigation-dropdown">
+                            <a href="#" class="nav-link" uib-dropdown-toggle>{{userModel.user.name.firstName}}</a>
+                            <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                <li role="menuitem"><a href="#" ng-click="logout($event)">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="navigation-mask" ng-click="closeMenu( $event )" id="navigation-mask"></div>
+</header>
