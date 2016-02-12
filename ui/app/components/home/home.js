@@ -12,10 +12,17 @@ angular.module('app.directives')
 }])
 .controller('HomeCtrl', [
     '$scope',
+    'fileUpload',
     function  (
-        $scope
+        $scope,
+        fileUpload
     ) {
         
-        console.log( 'hii' );
+        $scope.upload = function  ( $event ) {
+          var file = $scope.myFile;
+          var uploadUrl = '/upload/partners';
+          fileUpload.uploadFileToUrl(file, uploadUrl);
+
+        };
     } 
 ] ) ;

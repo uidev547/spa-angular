@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 
-var user = mongoose.Schema({
+var contentPartner = mongoose.Schema({
     firstName: String,
     lastName: String,
     emailId: String,
@@ -10,4 +10,4 @@ var user = mongoose.Schema({
     role: String
 });
 
-module.exports = mongoose.model('User',user);
+module.exports = mongoose.model('User', contentPartner);

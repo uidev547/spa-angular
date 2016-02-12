@@ -9,10 +9,10 @@
                 <div id="nav-links-container" class="nav-links-container">
                     <ul class="nav-links" id="nav-links">
                         <li>
-                            <a class="nav-link" href="#">link1</a>
+                            <a class="nav-link" href="#/users">link1</a>
                         </li>
                         <li ng-if="!userModel.user">
-                            <a  class="nav-link" href="/login">Login</a>
+                            <a  class="nav-link" href="#/login">Login</a>
                         </li>
                         <li ng-if="userModel.user" uib-dropdown class="navigation-dropdown">
                             <a href="#" class="nav-link" uib-dropdown-toggle>{{userModel.user.name.firstName}}</a>

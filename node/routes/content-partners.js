@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var userinfo = require( '../modules/userinfo.js' );
-var User = require( '../models/user.js' );
+var ContentPartner = require( '../models/ContentPartner.js' );
 var auth = require( '../modules/auth.js' );
 var mongoError = function( res ) {
     res.statusCode = 500;
@@ -11,8 +10,9 @@ var mongoError = function( res ) {
     return;
 };
 
+/* GET cps listing. */
 router.get('/', function(req, res, next) {
-    User.find({}, function  ( err, docs ) {
+    ContentPartner.find({}, function  ( err, docs ) {
         if( err ) {
             mongoError( res );
             return;
@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
         res.json( docs );
     })
 });
-/* GET users listing. */
+
 router.post('/create', auth.isAdmin, function(req, res, next) {
     
     var data = req.body;
@@ -31,7 +31,6 @@ router.post('/create', auth.isAdmin, function(req, res, next) {
         } );
         return;
     }
-
     var obj = {
         firstName: data.firstName,
         lastName: data.lastName,
@@ -39,13 +38,13 @@ router.post('/create', auth.isAdmin, function(req, res, next) {
         password: data.password,
         role: data.role
     }
-    var user = User( obj );
-    User.save( function ( err ) {
+    var cp = ContentPartner( obj );
+    ContentPartner.save( function ( err ) {
         if( err ) {
             mongoError( res );
             return;
         }
-        res.json( user );
+        res.json( cp );
     });
     
 });
@@ -60,7 +59,7 @@ router.get('/delete', function(req, res, next) {
         return;
     }
 
-    User.find({ _id:id }).remove( function( err ) {
+    ContentPartner.find({ _id:id }).remove( function( err ) {
         if( err ) {
             mongoError( res );
             return;
@@ -86,7 +85,7 @@ router.get('/update', function(req, res, next) {
         return;
     }
     var query = { '_id': data._id };
-    User.findOneAndUpdate(query, data, {upsert:true}, function(err, doc){
+    ContentPartner.findOneAndUpdate(query, data, {upsert:true}, function(err, doc){
         if (err) {
             mongoError( res );
             return;
